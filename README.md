@@ -1,4 +1,4 @@
-# ProductManagement
+# Product Management
 
 Entity Layer
 Business Access Layer  (Repository Pattern)
