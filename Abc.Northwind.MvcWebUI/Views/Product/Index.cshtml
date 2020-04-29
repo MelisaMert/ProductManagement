@@ -1,0 +1,61 @@
+﻿
+@model Abc.Northwind.MvcWebUI.Models.ProductListViewModel
+
+@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+<div>
+        <table class="table table responsive">
+            <tr>
+                <td>Product Name</td>
+                <td>Unit Price</td>
+                <td>Units In Stock</td>
+                <td></td>
+            </tr>
+            @foreach (var product in Model.Products)
+            {
+                <tr>
+                    <td>@product.ProductName</td>
+                    <td>@product.UnitPrice</td>
+                    <td>@product.UnitsInStock</td>
+                    <td><a class="btn btn-xs btn-success"
+                            asp-controller="Cart"
+                            asp-action="AddToCart"
+                            asp-route-productId="@product.ProductId"
+                         >
+                        Add to chart
+                        </a>
+                     </td>
+                </tr>
+            }
+        </table>
+    </div>
+<div class="pagination-index">
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+
+            @for (int i = 1; i <= @Model.PageCount; i++)
+            {
+                <li class="@Model.CurrentPage == i && "page-item active">
+                <a class="page-link" href="/product/index?page=@i&category=@Model.CurrentCategory">@i</a>
+                </li>
+            }
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+
